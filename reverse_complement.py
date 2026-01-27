@@ -25,4 +25,6 @@ complement = ""
 for base in seq:
     complement += comp[base]
 
-print("Complement:", complement)
+rev_complement = complement[::-1]
+
+print("Reverse Complement:", rev_complement)
