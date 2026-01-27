@@ -1,25 +1,18 @@
 seq = "ACTGCTGCAGTCAGTCAGTCAGTCGTCATGCATCTTGCTA"
 seq = seq.upper().replace("\n", "").replace(" ", "")
 
-base = {"A", "C", "G", "T", "N"}
-comp = {"A": "T", "T": "A", "G": "C", "C": "G", "N": "N"}
+allowed = {"A", "C", "G", "T", "N", "R", "Y" "K", "M", "S", "W"}
+comp = {"A": "T", "T": "A", "G": "C", "C": "G", "N": "N", "R": "Y", "Y": "R", "K": "M", "M": "K", "S": "S", "W": "W"}
 
 print("Sequenz:", seq)
 
 while True:
 
-    length = len(seq)
-    A = seq.count("A")
-    C = seq.count("C")
-    G = seq.count("G")
-    T = seq.count("T")
-    N = seq.count("N")
-    bp = A + C + G + T + N
-
-    if length == bp:
+    if set(seq).issubset(allowed):
+        print("Sequence valid.")
         break
     else:
-        seq = input("Sequence invalid (contains NOT only A/C/G/T/N). Enter new sequence:")
+        seq = input("Sequence invalid (contains NOT only A/C/G/T/N/R/Y/K/M/S/W). Enter new sequence:")
         seq = seq.upper().replace("\n", "").replace(" ", "")
 
 complement = ""
