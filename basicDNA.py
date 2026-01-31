@@ -29,3 +29,5 @@ print("T:", T)
 
 gc_percent = (G + C) / length * 100
 print(f"GC%: {gc_percent:.2f}")
+
+print("Hello")
