@@ -35,11 +35,11 @@ def parse_fasta(fasta_text: str) -> list(tuple):
     return results
 
 
-def is_valid_sequence(seq: str, allowed: set):
+def is_valid_sequence(seq: str):
     return set(seq).issubset(allowed)
 
 
-def reverse_complement(seq: str, comp: dict) -> str:
+def reverse_complement(seq: str) -> str:
     complement = ""
     for base in seq:
         complement += comp[base]
@@ -48,7 +48,7 @@ def reverse_complement(seq: str, comp: dict) -> str:
     return rev_comp
 
 
-def transcribe_to_rna(seq: str, seq_type: str, comp: dict) -> str:
+def transcribe_to_rna(seq: str) -> str:
     if seq_type == "coding":
         rna_seq = seq.replace("T", "U")
     elif seq_type == "template":
@@ -61,4 +61,15 @@ def transcribe_to_rna(seq: str, seq_type: str, comp: dict) -> str:
 with open ("sequence.fasta", "r") as f:
     fasta_sequence = f.read()
 
-print(parse_fasta(fasta_sequence))
+print("Sequences:", parse_fasta(fasta_sequence))
+results = parse_fasta(fasta_sequence)
+
+for header, seq in results:
+    if is_valid_sequence(seq) == True:
+        print("The sequence is valid. Gene:", header, "bp:", len(seq))
+    else:
+        print("The sequence is invalid. Gene:", header)
+
+    print("Reverse complement of", header + ":", reverse_complement(seq))
+    print("RNA of", header + ":", transcribe_to_rna(seq))
+    
