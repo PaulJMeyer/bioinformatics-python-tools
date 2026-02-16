@@ -1,10 +1,3 @@
-fasta_text = """>seq1
-ATGCGTA CGTA
-CGTACGATCG
->seq2
-TTTGGGCCC
-AAA"""
-
 allowed = {"A", "C", "G", "T", "N", "R", "Y", "K", "M", "S", "W", "B", "D", "H", "V", "-"}
 comp = {"A": "T", "T": "A", "G": "C", "C": "G", "N": "N", "R": "Y", "Y": "R", "K": "M", "M": "K", "S": "S", "W": "W", "B": "V", "V": "B", "D": "H", "H": "D", "-": "-"}
 seq_type = "coding"
@@ -64,3 +57,8 @@ def transcribe_to_rna(seq: str, seq_type: str, comp: dict) -> str:
     else:
         rna_seq = "Choose sequence type (coding or template)!"
     return rna_seq
+
+with open ("sequence.fasta", "r") as f:
+    fasta_sequence = f.read()
+
+print(parse_fasta(fasta_sequence))
